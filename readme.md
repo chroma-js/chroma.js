@@ -57,6 +57,13 @@ You can use it in Deno, too!
 import chroma from "https://code4fukui.github.io/chroma-es/index.js";
 ```
 
+## Minify
+
+```bash
+npm install terser -g
+sh make.sh
+```
+
 ### TODO
 
 - test
