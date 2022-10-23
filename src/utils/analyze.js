@@ -1,5 +1,5 @@
-const type = require('./type');
-const {log, pow, floor, abs} = Math;
+import type from './type.js';
+const { log, pow, floor, abs } = Math;
 
 
 const analyze = (data, key=null) => {
@@ -188,4 +188,4 @@ const limits = (data, mode='equal', num=7) => {
     return limits;
 }
 
-module.exports = {analyze, limits};
+export default { analyze, limits };

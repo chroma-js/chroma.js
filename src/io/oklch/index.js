@@ -1,9 +1,10 @@
-const { unpack, type } = require('../../utils');
-const chroma = require('../../chroma');
-const Color = require('../../Color');
-const input = require('../input');
+import { unpack, type } from '../../utils/index.js';
+import { chroma } from '../../chroma.js';
+import { Color } from '../../Color.js';
+import input from '../input.js';
 
-const rgb2oklch = require('./rgb2oklch');
+import rgb2oklch from './rgb2oklch.js';
+import oklch2rgb from './oklch2rgb.js';
 
 Color.prototype.oklch = function () {
     return rgb2oklch(this._rgb);
@@ -11,7 +12,7 @@ Color.prototype.oklch = function () {
 
 chroma.oklch = (...args) => new Color(...args, 'oklch');
 
-input.format.oklch = require('./oklch2rgb');
+input.format.oklch = oklch2rgb;
 
 input.autodetect.push({
     p: 3,

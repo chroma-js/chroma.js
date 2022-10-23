@@ -1,5 +1,5 @@
-const {unpack} = require('../../utils');
-const {max} = Math;
+import { unpack } from '../../utils/index.js';
+const { max } = Math;
 
 const rgb2cmyk = (...args) => {
     let [r,g,b] = unpack(args, 'rgb');
@@ -14,4 +14,4 @@ const rgb2cmyk = (...args) => {
     return [c,m,y,k];
 }
 
-module.exports = rgb2cmyk;
+export default rgb2cmyk;

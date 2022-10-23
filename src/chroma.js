@@ -1,9 +1,8 @@
+import { Color } from "./Color.js";
 
-const chroma = (...args) => {
+export const chroma = (...args) => {
 	return new chroma.Color(...args);
 };
 
-chroma.Color = require('./Color');
+chroma.Color = Color;
 chroma.version = '@@version'
-
-module.exports = chroma;

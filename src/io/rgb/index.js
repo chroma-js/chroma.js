@@ -1,8 +1,9 @@
-const chroma = require('../../chroma');
-const Color = require('../../Color');
-const input = require('../input');
-const {unpack, type} = require('../../utils');
-const {round} = Math;
+import { chroma } from '../../chroma.js';
+import { Color } from '../../Color.js';
+import input from '../input.js';
+import { unpack, type } from '../../utils/index.js';
+
+const { round } = Math;
 
 Color.prototype.rgb = function(rnd=true) {
     if (rnd === false) return this._rgb.slice(0,3);

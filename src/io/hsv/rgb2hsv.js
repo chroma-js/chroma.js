@@ -1,5 +1,5 @@
-const {unpack} = require('../../utils');
-const {min,max} = Math;
+import { unpack } from '../../utils/index.js';
+const { min,max } = Math;
 
 /*
  * supported arguments:
@@ -29,4 +29,4 @@ const rgb2hsl = (...args) => {
     return [h, s, v]
 }
 
-module.exports = rgb2hsl;
+export default rgb2hsl;

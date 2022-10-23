@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Chroma.js</title>
-    <script type="text/javascript" src="../../chroma.js"></script>
 </head>
 <style type="text/css">
     body { font-family: Helvetica; }
@@ -15,8 +14,9 @@
 <body>
 
 
-    <script type="text/javascript">
-
+    <script type="module">
+    import chroma from "../../index.js";
+        
     var names = Object.keys(chroma.colors), l = names.length;
 
     var cssMap = {

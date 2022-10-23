@@ -1,4 +1,4 @@
-const {unpack} = require('../../utils');
+import { unpack } from '../../utils/index.js';
 
 const rgb2hcg = (...args) => {
     const [r,g,b] = unpack(args, 'rgb').map(x => x / 255);
@@ -19,4 +19,4 @@ const rgb2hcg = (...args) => {
     return [h, delta, _g];
 }
 
-module.exports = rgb2hcg;
+export default rgb2hcg;

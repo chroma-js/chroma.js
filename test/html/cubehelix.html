@@ -3,7 +3,6 @@
 <head>
     <title>Cubejelix Interpolation</title>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="../../chroma.js"></script>
     <style type="text/css">
 input[type=number] { width: 40px; }
     </style>
@@ -18,7 +17,8 @@ input[type=number] { width: 40px; }
                 <input type="number" id="smax" value="1" step="0.1" min="0" />
 
 <hr>
-    <script type="text/javascript">
+    <script type="module">
+    import chroma from "../../index.js";
 
     $('input').on('change', update);
 

@@ -1,6 +1,6 @@
-const Color = require('../Color');
-const {type} = require('../utils');
-const {pow} = Math;
+import { Color } from '../Color.js';
+import { type } from '../utils/index.js';
+const { pow } = Math;
 
 const EPS = 1e-7;
 const MAX_ITER = 20;

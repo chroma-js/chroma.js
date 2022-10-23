@@ -1,8 +1,8 @@
-const Color = require('../Color');
-const {clip_rgb} = require('../utils');
-const {pow, sqrt, PI, cos, sin, atan2} = Math;
+import { Color } from '../Color.js';
+import { clip_rgb } from '../utils/index.js';
+const { pow, sqrt, PI, cos, sin, atan2 } = Math;
 
-module.exports = (colors, mode='lrgb', weights=null) => {
+export default (colors, mode='lrgb', weights=null) => {
     const l = colors.length;
     if (!weights) weights = Array.from(new Array(l)).map(() => 1);
     // normalize weights

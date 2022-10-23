@@ -1,5 +1,5 @@
-const {unpack, RAD2DEG} = require('../../utils');
-const {sqrt,atan2,round} = Math;
+import { unpack, RAD2DEG } from '../../utils/index.js';
+const { sqrt,atan2,round } = Math;
 
 const lab2lch = (...args) => {
     const [l, a, b] = unpack(args, 'lab');
@@ -9,4 +9,4 @@ const lab2lch = (...args) => {
     return [l, c, h];
 }
 
-module.exports = lab2lch;
+export default lab2lch;

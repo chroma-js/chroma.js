@@ -2,11 +2,11 @@
 // based on D.A. Green "A colour scheme for the display of astronomical intensity images"
 // http://astron-soc.in/bulletin/11June/289392011.pdf
 
-const {type, clip_rgb, TWOPI} = require('../utils');
-const {pow,sin,cos} = Math;
-const chroma = require('../chroma');
+import { type, clip_rgb, TWOPI } from '../utils/index.js';
+const { pow,sin,cos } = Math;
+import { chroma } from '../chroma.js';
 
-module.exports = function(start=300, rotations=-1.5, hue=1, gamma=1, lightness=[0,1]) {
+export default function(start=300, rotations=-1.5, hue=1, gamma=1, lightness=[0,1]) {
     let dh = 0, dl;
     if (type(lightness) === 'array') {
         dl = lightness[1] - lightness[0];
