@@ -10,9 +10,9 @@
         
     function showScale(cs, outerdiv, log) {
         cs.out('hex');
-        var c = document.createElement('div');
-        for (var i=0; i<= 1; i += 0.002) {
-            var d = document.createElement('div');
+        const c = document.createElement('div');
+        for (let i = 0; i <= 1; i += 0.002) {
+            const d = document.createElement('div');
             d.style.display = 'inline-block';
             d.style.width = '2px';
             d.style.height = '60px';
@@ -22,7 +22,7 @@
         outerdiv.appendChild(c);
     }
 
-    var scales = [
+    const scales = [
         "scale(['lightyellow', 'navy'])",
         "scale(['lightyellow', 'navy']).mode('lab')",
         "scale(['lightyellow', 'navy']).mode('lch')",
@@ -56,8 +56,8 @@
         //"scale(['a01','F7F7F7','25a']).domain([0,.05,.13,.2,.4,.6,.8,1]).fixed(true).mode('lab')",
     ];
 
-    for (var s in scales) {
-        s = scales[s];
+    for (const name in scales) {
+        const s = scales[name];
         const d = document.createElement('div');
         d.style.position = 'relative';
         document.body.appendChild(d);

@@ -9,10 +9,10 @@
     import chroma from "../../index.js";
         
     function showScale(color, mode, odiv) {
-        var c = document.createElement('div');
-        for (var i=0; i <= 1; i += 0.01) {
-            var col = chroma(color).luminance(i, mode);
-            var d = document.createElement('div');
+        const c = document.createElement('div');
+        for (let i = 0; i <= 1; i += 0.01) {
+            const col = chroma(color).luminance(i, mode);
+            const d = document.createElement('div');
             d.style.display = 'inline-block';
             d.style.width = '10px';
             d.style.height = '60px';
@@ -22,7 +22,7 @@
         odiv.appendChild(c);
     }
 
-    var scales = [
+    const scales = [
         ['red', 'rgb'],
         ['red', 'lab'],
         ['yellow', 'lab'],
@@ -33,8 +33,8 @@
         ['orange', 'rgb']
     ];
 
-    for (var s in scales) {
-        s = scales[s];
+    for (const name in scales) {
+        const s = scales[name];
         const d = document.createElement('div');
         d.style.position = 'relative';
         document.body.appendChild(d);

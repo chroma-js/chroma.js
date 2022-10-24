@@ -24,22 +24,22 @@ input[type=number] { width: 40px; }
 
     function v(id) { return +$('#'+id).val(); }
 
-    var j = 0;
+    const j = 0;
 
     function update() {
-        var steps = 200,
-            totalW = 800;
-        var sat = [v('smin'), v('smax')];
+        const steps = 200;
+        const totalW = 800;
+        const sat = [v('smin'), v('smax')];
         $('.scale').remove();
-        var ch = chroma.cubehelix(
-                v('start'),
-                v('rot'),
-                sat[0] != sat[1] ? sat : sat[0],
-                v('gamma'),
-                [v('lmin'), v('lmax')]
-            );
-        var c = $('<div />').addClass('scale').appendTo('body');
-        for (var i=0; i < steps; i++) {
+        const ch = chroma.cubehelix(
+            v('start'),
+            v('rot'),
+            sat[0] != sat[1] ? sat : sat[0],
+            v('gamma'),
+            [v('lmin'), v('lmax')]
+        );
+        const c = $('<div />').addClass('scale').appendTo('body');
+        for (let i = 0; i < steps; i++) {
             $('<div/>').css({
                 display: 'inline-block',
                 width: (totalW / steps) + 'px',

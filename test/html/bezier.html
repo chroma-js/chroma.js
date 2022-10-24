@@ -9,12 +9,12 @@
     //import chroma from "../../index.js";
     import chroma from "../../chroma.min.js";
     
-    function showGradient(c, outerdiv, steps) {
-        var I = chroma.bezier(c),
-            c = document.createElement('div'),
-            totalW = 800;
-        for (var i=0; i < steps; i++) {
-            var d = document.createElement('div');
+    function showGradient(color, outerdiv, steps) {
+        const I = chroma.bezier(color);
+        const c = document.createElement('div');
+        const totalW = 800;
+        for (let i = 0; i < steps; i++) {
+            const d = document.createElement('div');
             d.style.display = 'inline-block';
             d.style.width = (totalW / steps) + 'px';
             d.style.height = '60px';
@@ -24,7 +24,7 @@
         outerdiv.appendChild(c);
     }
 
-    var colors = [
+    const colors = [
         ['white', 'black'],
         ['white', 'red', 'black'],
         ['white', 'yellow', 'red', 'black'],
@@ -35,7 +35,7 @@
         ['darkred', 'orange', 'snow', 'lightgreen', 'royalblue'],
     ];
 
-    for (var c of colors) {
+    for (const c of colors) {
         const d = document.createElement('div');
         d.style.position = 'relative';
         document.body.appendChild(d);
