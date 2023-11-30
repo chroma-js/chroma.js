@@ -9,6 +9,7 @@
     // ... use chroma as before ...
   </script>
   ```
+* basic test added for [Deno](https://deno.com).
 
 ### 2.6.2
 * added Android colors support to 'light' build version, missing by error at [2.5.0](#250)
