@@ -19,6 +19,7 @@
     "docs": "cd docs && make",
     "docs-preview": "cd docs && make && make preview",
     "test": "vows --dot-matrix test/*.js",
+    "test:deno": "deno run test/test-deno.js",
     "lint": "eslint index.js index-light.js src"
   },
   "devDependencies": {
