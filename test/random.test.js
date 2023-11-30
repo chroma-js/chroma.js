@@ -1,15 +1,11 @@
-require('es6-shim');
-const vows = require('vows');
-const assert = require('assert');
-const chroma = require('../index');
+import assert from 'assert';
+import chroma from '../index.js';
 
-
-vows
-    .describe('Some tests for random colors')
-
-    .addBatch({
-
-        'random colors': {
-            topic: chroma.random(),
-            'valid hex code'(topic) { return assert(/^#[0-9a-f]{6}$/i.test(topic.hex())); }
-        }}).export(module);
+describe('Some tests for random colors', () => {
+    describe('random colors', () => {
+        const topic = chroma.random();
+        test('valid hex code', () => {
+            assert(/^#[0-9a-f]{6}$/i.test(topic.hex()));
+        });
+    });
+});

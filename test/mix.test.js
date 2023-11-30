@@ -1,99 +1,139 @@
-require('es6-shim');
-const vows = require('vows');
-const assert = require('assert');
-const chroma = require('../index');
+import assert from 'assert';
+import chroma from '../index.js';
 
+describe('Some tests for chroma.color()', () => {
+    describe('hsv interpolation white <-> red', () => {
+        const topic = chroma('white').interpolate('red', 0.5, 'hsv');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff8080');
+        });
+    });
 
-vows
-    .describe('Some tests for chroma.color()')
+    describe('use mix as alias', () => {
+        const topic = chroma('white').mix('red', 0.5, 'hsv');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff8080');
+        });
+    });
 
-    .addBatch({
+    describe('alternative mix syntax', () => {
+        const topic = chroma.mix('red', 'blue', 0.25, 'rgb');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#bf0040');
+        });
+    });
 
-        'hsv interpolation white <-> red': {
-            topic: chroma('white').interpolate('red', 0.5, 'hsv'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff8080'); }
-        },
+    describe('hsl interpolation white <-> red', () => {
+        const topic = chroma('white').interpolate('red', 0.5, 'hsl');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff8080');
+        });
+    });
 
-        'use mix as alias': {
-            topic: chroma('white').mix('red', 0.5, 'hsv'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff8080'); }
-        },
+    describe('rgb interpolation white <-> red', () => {
+        const topic = chroma('white').interpolate('red', 0.5, 'rgb');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff8080');
+        });
+    });
 
-        'alternative mix syntax': {
-            topic: chroma.mix('red', 'blue', 0.25, 'rgb'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#bf0040'); }
-        },
+    describe('hsv interpolation red <-> white', () => {
+        const topic = chroma('red').interpolate('white', 0.5, 'hsv');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff8080');
+        });
+    });
 
-        'hsl interpolation white <-> red': {
-            topic: chroma('white').interpolate('red', 0.5, 'hsl'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff8080'); }
-        },
+    describe('hsl interpolation red <-> white', () => {
+        const topic = chroma('red').interpolate('white', 0.5, 'hsl');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff8080');
+        });
+    });
 
-        'rgb interpolation white <-> red': {
-            topic: chroma('white').interpolate('red', 0.5, 'rgb'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff8080'); }
-        },
+    describe('rgb interpolation red <-> white', () => {
+        const topic = chroma('red').interpolate('white', 0.5, 'rgb');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff8080');
+        });
+    });
 
-        'hsv interpolation red <-> white': {
-            topic: chroma('red').interpolate('white', 0.5, 'hsv'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff8080'); }
-        },
+    describe('interpolation short function', () => {
+        const topic = {
+            f(t) {
+                return chroma.interpolate('#ff0000', '#ffffff', t, 'hsv').hex();
+            }
+        };
+        test('starts at red', () => {
+            assert.equal(topic.f(0), '#ff0000');
+        });
+        test('goes over light red', () => {
+            assert.equal(topic.f(0.5), '#ff8080');
+        });
+        test('ends at white', () => {
+            assert.equal(topic.f(1), '#ffffff');
+        });
+    });
 
-        'hsl interpolation red <-> white': {
-            topic: chroma('red').interpolate('white', 0.5, 'hsl'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff8080'); }
-        },
+    describe('num interpolation white <-> red', () => {
+        const topic = chroma(0xffffff).interpolate(0xff0000, 0.5, 'num');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff7fff');
+        });
+    });
 
-        'rgb interpolation red <-> white': {
-            topic: chroma('red').interpolate('white', 0.5, 'rgb'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff8080'); }
-        },
+    describe('num interpolation red <-> white', () => {
+        const topic = chroma(0xff0000).interpolate(0xffffff, 0.5, 'num');
+        test('works', () => {
+            assert.deepEqual(topic.hex(), '#ff7fff');
+        });
+    });
 
-        'interpolation short function': {
-            topic: {
-                f(t) { return chroma.interpolate('#ff0000', '#ffffff', t, 'hsv').hex(); }
-            },
-            'starts at red'(topic) { return assert.equal(topic.f(0), '#ff0000'); },
-            'goes over light red'(topic) { return assert.equal(topic.f(0.5), '#ff8080'); },
-            'ends at white'(topic) { return assert.equal(topic.f(1), '#ffffff'); }
-        },
+    describe('interpolation short function with num provided', () => {
+        const topic = {
+            f(t) {
+                return chroma.interpolate(0xff0000, 0xffffff, t, 'num').hex();
+            }
+        };
+        test('starts at red', () => {
+            assert.equal(topic.f(0), '#ff0000');
+        });
+        test('goes over light red', () => {
+            assert.equal(topic.f(0.5), '#ff7fff');
+        });
+        test('ends at white', () => {
+            assert.equal(topic.f(1), '#ffffff');
+        });
+    });
 
-        'num interpolation white <-> red': {
-            topic: chroma(0xffffff).interpolate(0xff0000, 0.5, 'num'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff7fff'); }
-        },
+    describe('interpolate in num', () => {
+        const topic = chroma.interpolate(chroma.num(0xffffe0), chroma.num(0x102180), 0.5, 'num');
+        test('hex', () => {
+            assert.equal(topic.hex(), '#8810b0');
+        });
+        test('num', () => {
+            assert.equal(topic.num(), 8917168);
+        });
+    });
 
-        'num interpolation red <-> white': {
-            topic: chroma(0xff0000).interpolate(0xffffff, 0.5, 'num'),
-            'works'(topic) { return assert.deepEqual(topic.hex(), '#ff7fff'); }
-        },
+    describe('interpolate in hsv', () => {
+        const topic = chroma.interpolate('white', 'black', 0.5, 'hsv');
+        test('hex', () => {
+            assert.equal(topic.hex(), '#808080');
+        });
+    });
 
-        'interpolation short function with num provided': {
-            topic: {
-                f(t) { return chroma.interpolate(0xff0000, 0xffffff, t, 'num').hex(); }
-            },
-            'starts at red'(topic) { return assert.equal(topic.f(0), '#ff0000'); },
-            'goes over light red'(topic) { return assert.equal(topic.f(0.5), '#ff7fff'); },
-            'ends at white'(topic) { return assert.equal(topic.f(1), '#ffffff'); }
-        },
+    describe('interpolate in hsl', () => {
+        const topic = chroma.interpolate('lightyellow', 'navy', 0.5, 'hsl');
+        test('hex', () => {
+            assert.equal(topic.hex(), '#31ff98');
+        });
+    });
 
-        'interpolate in num': {
-            topic: chroma.interpolate(chroma.num(0xffffe0), chroma.num(0x102180), 0.5, 'num'),
-            'hex'(topic) { return assert.equal(topic.hex(), '#8810b0'); },
-            'num'(topic) { return assert.equal(topic.num(), 8917168); }
-        },
-
-        'interpolate in hsv': {
-            topic: chroma.interpolate('white', 'black', 0.5, 'hsv'),
-            'hex'(topic) { return assert.equal(topic.hex(), '#808080'); }
-        },
-
-        'interpolate in hsl': {
-            topic: chroma.interpolate('lightyellow', 'navy', 0.5, 'hsl'),
-            'hex'(topic) { return assert.equal(topic.hex(), '#31ff98'); }
-        },
-
-        'interpolate in lrgb': {
-            topic: chroma.interpolate('red', 'blue', 0.5, 'lrgb'),
-            'hex'(topic) { return assert.equal(topic.hex(), '#b400b4'); }
-        }}).export(module);
+    describe('interpolate in lrgb', () => {
+        const topic = chroma.interpolate('red', 'blue', 0.5, 'lrgb');
+        test('hex', () => {
+            assert.equal(topic.hex(), '#b400b4');
+        });
+    });
+});

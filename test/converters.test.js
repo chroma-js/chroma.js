@@ -1,47 +1,40 @@
-require('es6-shim');
+import assert from 'assert';
+import chroma from '../index.js';
 
-const vows = require('vows');
-const assert = require('assert');
-const chroma = require('../index');
-
-const test = vows.describe('Testing color conversions');
-
-for (let k in chroma.colors) {
-    test.addBatch({
-        k: {
-            topic: chroma.colors[k],
-            'to hsl and back': function (t) {
-                assert.equal(chroma.hsl(chroma(t).hsl()).hex(), t);
-            },
-            'to cmyk and back': function (t) {
-                assert.equal(chroma.cmyk(chroma(t).cmyk()).hex(), t);
-            },
-            'to css and back': function (t) {
-                assert.equal(chroma.css(chroma(t).css()).hex(), t);
-            },
-            'to hsi and back': function (t) {
-                assert.equal(chroma.hsi(chroma(t).hsi()).hex(), t);
-            },
-            'to hsv and back': function (t) {
-                assert.equal(chroma.hsv(chroma(t).hsv()).hex(), t);
-            },
-            'to lab and back': function (t) {
-                assert.equal(chroma.lab(chroma(t).lab()).hex(), t);
-            },
-            'to oklab and back': function (t) {
-                assert.equal(chroma.oklab(chroma(t).oklab()).hex(), t);
-            },
-            'to lch and back': function (t) {
-                assert.equal(chroma.lch(chroma(t).lch()).hex(), t);
-            },
-            'to oklch and back': function (t) {
-                assert.equal(chroma.oklch(chroma(t).oklch()).hex(), t);
-            },
-            'to num and back': function (t) {
-                assert.equal(chroma.num(chroma(t).num()).hex(), t);
-            }
-        }
-    });
-}
-
-test['export'](module);
+describe('Testing color conversions', () => {
+    for (let k in chroma.colors) {
+        describe(k, () => {
+            const topic = chroma.colors[k];
+            test('to hsl and back', () => {
+                assert.equal(chroma.hsl(chroma(topic).hsl()).hex(), topic);
+            });
+            test('to cmyk and back', () => {
+                assert.equal(chroma.cmyk(chroma(topic).cmyk()).hex(), topic);
+            });
+            test('to css and back', () => {
+                assert.equal(chroma.css(chroma(topic).css()).hex(), topic);
+            });
+            test('to hsi and back', () => {
+                assert.equal(chroma.hsi(chroma(topic).hsi()).hex(), topic);
+            });
+            test('to hsv and back', () => {
+                assert.equal(chroma.hsv(chroma(topic).hsv()).hex(), topic);
+            });
+            test('to lab and back', () => {
+                assert.equal(chroma.lab(chroma(topic).lab()).hex(), topic);
+            });
+            test('to oklab and back', () => {
+                assert.equal(chroma.oklab(chroma(topic).oklab()).hex(), topic);
+            });
+            test('to lch and back', () => {
+                assert.equal(chroma.lch(chroma(topic).lch()).hex(), topic);
+            });
+            test('to oklch and back', () => {
+                assert.equal(chroma.oklch(chroma(topic).oklch()).hex(), topic);
+            });
+            test('to num and back', () => {
+                assert.equal(chroma.num(chroma(topic).num()).hex(), topic);
+            });
+        });
+    }
+});

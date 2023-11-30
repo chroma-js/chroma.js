@@ -1,43 +1,48 @@
-const vows = require('vows')
-const assert = require('assert');
-require('es6-shim');
+import assert from 'assert';
 
 require('../index');
-const Color = require('../src/Color');
+import Color from '../src/Color.js';
 
-const hexColors = {};
-['#ff9900', '#FF9900', '#F90', 'f90', 'FF9900', 'FF9900F0', 'F90F', '#F90F'].forEach(hex => {
-    hexColors[`detect hex ${hex}`] = {
-        topic() { return () => { return new Color(hex) } },
-        check: {
-            noErrThrown(topic) { assert.doesNotThrow(topic); },
-            hexCode(topic) { assert.strictEqual(topic().hex('rgb'), '#ff9900');}
+describe('Testing Color', () => {
+    describe('re-use existing color instance', () => {
+        test('same', () => {
+            const c0 = new Color('red');
+            assert.strictEqual(c0, new Color(c0));
+        });
+    });
+    describe('autodetect named colors', () => {
+        function topic() {
+            return new Color('mediumslateblue');
         }
-    }
+        test('noErrThrown', () => {
+            assert.doesNotThrow(topic);
+        });
+        test('hexCode', () => {
+            assert.strictEqual(topic().hex(), '#7b68ee');
+        });
+    });
+    describe('throw err on wrong color name', () => {
+        function topic() {
+            return new Color('fakecolor');
+        }
+        test('errThrown', () => {
+            assert.throws(topic);
+        });
+    });
+    describe('autodetect correct hex colors', () => {
+        const hexes = ['#ff9900', '#FF9900', '#F90', 'f90', 'FF9900', 'FF9900F0', 'F90F', '#F90F'];
+        for (const hex of hexes) {
+            describe(`detect hex ${hex}`, () => {
+                function topic() {
+                    return new Color(hex);
+                }
+                test('noErrThrown', () => {
+                    assert.doesNotThrow(topic);
+                });
+                test('hexCode', () => {
+                    assert.strictEqual(topic().hex('rgb'), '#ff9900');
+                });
+            });
+        }
+    });
 });
-
-vows
-    .describe('Testing Color')
-    .addBatch({
-        're-use existing color instance': {
-            same() {
-                const c0 = new Color('red');
-                return assert.strictEqual(c0, new Color(c0));
-            },
-        },
-        'autodetect named colors': {
-            topic() { return () => { return new Color('mediumslateblue') } },
-            'check': {
-                noErrThrown(topic) { assert.doesNotThrow(topic); },
-                hexCode(topic) { assert.strictEqual(topic().hex(), '#7b68ee') }
-            }
-        },
-        'throw err on wrong color name': {
-            topic() { return () => { return new Color('fakecolor') } },
-            'check': {
-                errThrown(topic) { assert.throws(topic); }
-            }
-        },
-        'autodetect correct hex colors': { hexColors }
-    })
-    .export(module);

@@ -1,50 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Chroma.js</title>
-</head>
-<body>
+    <head>
+        <title>Chroma.js</title>
+    </head>
+    <body>
+        <script type="module">
+            import chroma from '../../index.js';
 
-    <script type="module">
-    import chroma from "../../index.js";
-        
-    function showScale(color, mode, odiv) {
-        const c = document.createElement('div');
-        for (let i = 0; i <= 1; i += 0.01) {
-            const col = chroma(color).luminance(i, mode);
-            const d = document.createElement('div');
-            d.style.display = 'inline-block';
-            d.style.width = '10px';
-            d.style.height = '60px';
-            d.style.background = col.hex();
-            c.appendChild(d);
-        }
-        odiv.appendChild(c);
-    }
+            function showScale(color, mode, odiv) {
+                const c = document.createElement('div');
+                for (let i = 0; i <= 1; i += 0.01) {
+                    const col = chroma(color).luminance(i, mode);
+                    const d = document.createElement('div');
+                    d.style.display = 'inline-block';
+                    d.style.width = '10px';
+                    d.style.height = '60px';
+                    d.style.background = col.hex();
+                    c.appendChild(d);
+                }
+                odiv.appendChild(c);
+            }
 
-    const scales = [
-        ['red', 'rgb'],
-        ['red', 'lab'],
-        ['yellow', 'lab'],
-        ['black', 'rgb'],
-        ['blue', 'rgb'],
-        ['green', 'rgb'],
-        ['green', 'lab'],
-        ['orange', 'rgb']
-    ];
+            const scales = [
+                ['red', 'rgb'],
+                ['red', 'lab'],
+                ['yellow', 'lab'],
+                ['black', 'rgb'],
+                ['blue', 'rgb'],
+                ['green', 'rgb'],
+                ['green', 'lab'],
+                ['orange', 'rgb']
+            ];
 
-    for (const name in scales) {
-        const s = scales[name];
-        const d = document.createElement('div');
-        d.style.position = 'relative';
-        document.body.appendChild(d);
-        d.innerHTML = "<div style='position:absolute;top:5px;left:10px;opacity:0.9;color:#000;text-shadow:-1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(255,255,255,0.3), -1px 1px 0px rgba(255,255,255,0.3), 1px -1px 0px rgba(255,255,255,0.3)'><code>" + s.join(' / ') + "</code></div>";
-        showScale(s[0], s[1], d);
-    }
-
-
-
-    </script>
-
-</body>
+            for (const name in scales) {
+                const s = scales[name];
+                const d = document.createElement('div');
+                d.style.position = 'relative';
+                document.body.appendChild(d);
+                d.innerHTML =
+                    "<div style='position:absolute;top:5px;left:10px;opacity:0.9;color:#000;text-shadow:-1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(255,255,255,0.3), -1px 1px 0px rgba(255,255,255,0.3), 1px -1px 0px rgba(255,255,255,0.3)'><code>" +
+                    s.join(' / ') +
+                    '</code></div>';
+                showScale(s[0], s[1], d);
+            }
+        </script>
+    </body>
 </html>

@@ -1,51 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Bezier Interpolation</title>
-</head>
-<body>
+    <head>
+        <title>Bezier Interpolation</title>
+    </head>
+    <body>
+        <script type="module">
+            //import chroma from "../../index.js";
+            import chroma from '../../chroma.min.js';
 
-    <script type="module">
-    //import chroma from "../../index.js";
-    import chroma from "../../chroma.min.js";
-    
-    function showGradient(color, outerdiv, steps) {
-        const I = chroma.bezier(color);
-        const c = document.createElement('div');
-        const totalW = 800;
-        for (let i = 0; i < steps; i++) {
-            const d = document.createElement('div');
-            d.style.display = 'inline-block';
-            d.style.width = (totalW / steps) + 'px';
-            d.style.height = '60px';
-            d.style.background = I(i/(steps-1)).hex();
-            c.appendChild(d);
-        }
-        outerdiv.appendChild(c);
-    }
+            function showGradient(color, outerdiv, steps) {
+                const I = chroma.bezier(color);
+                const c = document.createElement('div');
+                const totalW = 800;
+                for (let i = 0; i < steps; i++) {
+                    const d = document.createElement('div');
+                    d.style.display = 'inline-block';
+                    d.style.width = totalW / steps + 'px';
+                    d.style.height = '60px';
+                    d.style.background = I(i / (steps - 1)).hex();
+                    c.appendChild(d);
+                }
+                outerdiv.appendChild(c);
+            }
 
-    const colors = [
-        ['white', 'black'],
-        ['white', 'red', 'black'],
-        ['white', 'yellow', 'red', 'black'],
-        ['red', 'white', 'blue'],
-        ['#fdfdf9', 'darkred'],
-        ['#fdfdf9', 'orange', 'darkred'],
-        ['#fdfdf9', 'yellow', 'orange', 'darkred'],
-        ['darkred', 'orange', 'snow', 'lightgreen', 'royalblue'],
-    ];
+            const colors = [
+                ['white', 'black'],
+                ['white', 'red', 'black'],
+                ['white', 'yellow', 'red', 'black'],
+                ['red', 'white', 'blue'],
+                ['#fdfdf9', 'darkred'],
+                ['#fdfdf9', 'orange', 'darkred'],
+                ['#fdfdf9', 'yellow', 'orange', 'darkred'],
+                ['darkred', 'orange', 'snow', 'lightgreen', 'royalblue']
+            ];
 
-    for (const c of colors) {
-        const d = document.createElement('div');
-        d.style.position = 'relative';
-        document.body.appendChild(d);
-        d.innerHTML = "<div style='position:absolute;top:5px;left:10px;opacity:0.9;color:#000;text-shadow:-1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(255,255,255,0.3), -1px 1px 0px rgba(255,255,255,0.3), 1px -1px 0px rgba(255,255,255,0.3)'><code>" + c + "</code></div>";
-        showGradient(c, d, 13);
-    }
-
-
-
-    </script>
-
-</body>
+            for (const c of colors) {
+                const d = document.createElement('div');
+                d.style.position = 'relative';
+                document.body.appendChild(d);
+                d.innerHTML =
+                    "<div style='position:absolute;top:5px;left:10px;opacity:0.9;color:#000;text-shadow:-1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(255,255,255,0.3), -1px 1px 0px rgba(255,255,255,0.3), 1px -1px 0px rgba(255,255,255,0.3)'><code>" +
+                    c +
+                    '</code></div>';
+                showGradient(c, d, 13);
+            }
+        </script>
+    </body>
 </html>

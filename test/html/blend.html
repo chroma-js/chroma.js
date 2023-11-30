@@ -1,70 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>Chroma.js</title>
-</head>
-<style type="text/css">
-    body { font-family: Helvetica; }
-    h1 { font-size: 18px; }
-    .row { margin-bottom: 10px; }
-    .left, .right { display: inline-block; margin-right: 20px; position: relative; }
-    .swatch { display: inline-block; width: 60px; height: 50px; }
-    .swatch.overlay { position: absolute; left: 60px; }
-</style>
-<body>
-
-
-    <script type="module">
-    import chroma from "../../index.js";
-        
-    const names = Object.keys(chroma.colors), l = names.length;
-
-    const cssMap = {
-        dodge: 'color-dodge',
-        burn: 'color-burn'
-    };
-
-    Object.keys(chroma.blend).forEach(function(mode) {
-
-        document.write('<h1>'+mode+'</h1>');
-        for (let i = 0; i < 10; i++) {
-            const row = el('div.row'),
-                left = el('div.left'),
-                right = el('div.right');
-
-            const bottom = names[Math.floor(Math.random()*l)],
-                top = names[Math.floor(Math.random()*l)];
-
-            swatch(bottom, left);
-            swatch(chroma.blend(bottom, top, mode).hex(), left);
-            swatch(top, left);
-
-            swatch(bottom, right);
-            swatch(bottom, right);
-            const s = swatch(top, right);
-            s.className = 'swatch overlay';
-            s.style.mixBlendMode = cssMap[mode] || mode;
-            swatch(top, right);
+    <head>
+        <title>Chroma.js</title>
+    </head>
+    <style type="text/css">
+        body {
+            font-family: Helvetica;
         }
+        h1 {
+            font-size: 18px;
+        }
+        .row {
+            margin-bottom: 10px;
+        }
+        .left,
+        .right {
+            display: inline-block;
+            margin-right: 20px;
+            position: relative;
+        }
+        .swatch {
+            display: inline-block;
+            width: 60px;
+            height: 50px;
+        }
+        .swatch.overlay {
+            position: absolute;
+            left: 60px;
+        }
+    </style>
+    <body>
+        <script type="module">
+            import chroma from '../../index.js';
 
-    });
+            const names = Object.keys(chroma.colors),
+                l = names.length;
 
-    function swatch(color, parent) {
-        const s = el('div.swatch', parent);
-        s.setAttribute('title', color);
-        s.style.background = color;
-        return s;
-    }
+            const cssMap = {
+                dodge: 'color-dodge',
+                burn: 'color-burn'
+            };
 
-    function el(t, parent) {
-        const p = t.split('.');
-        const e = document.createElement(p[0]);
-        if (p[1]) e.className = p[1];
-        (parent || document.body).appendChild(e);
-        return e;
-    }
+            Object.keys(chroma.blend).forEach(function (mode) {
+                document.write('<h1>' + mode + '</h1>');
+                for (let i = 0; i < 10; i++) {
+                    const row = el('div.row'),
+                        left = el('div.left'),
+                        right = el('div.right');
 
-    </script>
+                    const bottom = names[Math.floor(Math.random() * l)],
+                        top = names[Math.floor(Math.random() * l)];
 
-</body>
+                    swatch(bottom, left);
+                    swatch(chroma.blend(bottom, top, mode).hex(), left);
+                    swatch(top, left);
+
+                    swatch(bottom, right);
+                    swatch(bottom, right);
+                    const s = swatch(top, right);
+                    s.className = 'swatch overlay';
+                    s.style.mixBlendMode = cssMap[mode] || mode;
+                    swatch(top, right);
+                }
+            });
+
+            function swatch(color, parent) {
+                const s = el('div.swatch', parent);
+                s.setAttribute('title', color);
+                s.style.background = color;
+                return s;
+            }
+
+            function el(t, parent) {
+                const p = t.split('.');
+                const e = document.createElement(p[0]);
+                if (p[1]) e.className = p[1];
+                (parent || document.body).appendChild(e);
+                return e;
+            }
+        </script>
+    </body>
 </html>
