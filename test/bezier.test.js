@@ -136,6 +136,8 @@ vows
       },
     },
     
+    // One of the next two tests is incorrect. ///////////////////////////
+    // regorxxx test
     "five color diverging n-1-degree bezier interpolation with alpha": {
         topic: {
                 f: chroma.bezier(["darkred", chroma("orange").alpha(.75), chroma("snow").alpha(.5), chroma("lightgreen").alpha(.25), chroma("royalblue").alpha(0)])
@@ -156,7 +158,37 @@ vows
             assert.equal(topic.f(0.75).hex(), "#a7c1bd40");
         }
     },
+    // taisukef test
+    "five color diverging quadratic bezier interpolation": {
+      topic: {
+        f: chroma.bezier([
+          "darkred",
+          chroma("orange").alpha(0.75),
+          chroma("snow").alpha(0.5),
+          chroma("lightgreen").alpha(0.25),
+          chroma("royalblue").alpha(0)
+        ])
+      },
+      "starts from darkred"(topic) {
+        assert.equal(topic.f(0).hex(), "#8b0000");
+      },
+      "ends in transparent royalblue"(topic) {
+        assert.equal(topic.f(1).hex(), "#4169e100");
+      },
+      "center is snow"(topic) {
+        assert.equal(topic.f(0.5).hex(), "#fffafa80");
+      },
+      "1st quarter"(topic) {
+        assert.equal(topic.f(0.25).hex(), "#e9954ebf");
+      },
+      "3rd quarter"(topic) {
+        assert.equal(topic.f(0.75).hex(), "#a6cfc140");
+      }
+    },
+    // ///////////////////////////////////////////////////////////////////
     
+    // One of the next two tests is incorrect. ///////////////////////////
+    // regorxxx test
     "using bezier in a chroma.scale": {
       topic: {
         f: chroma
@@ -188,5 +220,29 @@ vows
         assert.equal(topic.f(0.75), "#a7c1bd");
       },
     },
+    // taisukef test
+    "using bezier in a chroma.scale (2)": {
+      topic: {
+        f: chroma
+          .scale(chroma.bezier(["darkred", "orange", "snow", "lightgreen", "royalblue"]))
+          .domain([0, 1], 5)
+          .out("hex")
+      },
+      "starts from darkred"(topic) {
+        assert.equal(topic.f(0), "#8b0000");
+      },
+      "ends in royalblue"(topic) {
+        assert.equal(topic.f(1), "#4169e1");
+      },
+      "center is snow"(topic) {
+        assert.equal(topic.f(0.5), "#fffafa");
+      },
+      "1st quarter"(topic) {
+        assert.equal(topic.f(0.25), "#e9954e");
+      },
+      "3rd quarter"(topic) {
+        assert.equal(topic.f(0.75), "#a6cfc1");
+      }
+    }
   })
   .export(module);

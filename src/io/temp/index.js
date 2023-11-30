@@ -1,8 +1,9 @@
-const chroma = require('../../chroma');
-const Color = require('../../Color');
-const input = require('../input');
+import { chroma } from '../../chroma.js';
+import { Color } from '../../Color.js';
+import input from '../input.js';
 
-const rgb2temperature = require('./rgb2temperature');
+import rgb2temperature from './rgb2temperature.js';
+import temperature from './temperature2rgb.js';
 
 Color.prototype.temp =
 Color.prototype.kelvin =
@@ -16,6 +17,4 @@ chroma.temperature = (...args) => new Color(...args, 'temp');
 
 input.format.temp =
 input.format.kelvin =
-input.format.temperature = require('./temperature2rgb');
-
-
+input.format.temperature = temperature;

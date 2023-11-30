@@ -1,5 +1,5 @@
-const {unpack, last} = require('../../utils');
-const {round} = Math;
+import { unpack, last } from '../../utils/index.js';
+const { round } = Math;
 
 const rgb2hex = (...args) => {
     let [r,g,b,a] = unpack(args, 'rgba');
@@ -23,4 +23,4 @@ const rgb2hex = (...args) => {
     }
 }
 
-module.exports = rgb2hex;
+export default rgb2hex;

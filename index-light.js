@@ -1,32 +1,35 @@
-const chroma = require('./src/chroma');
+import { chroma } from './src/chroma.js';
 
 // feel free to comment out anything to rollup
 // a smaller chroma.js built
 
 // io --> convert colors
-require('./src/io/css');
-require('./src/io/hex');
-require('./src/io/hsl');
-require('./src/io/lab');
-require('./src/io/oklab');
-require('./src/io/rgb');
-require('./src/io/and');
+import './src/io/css/index.js';
+import './src/io/hex/index.js';
+import './src/io/hsl/index.js';
+import './src/io/lab/index.js';
+import './src/io/oklab/index.js';
+import './src/io/rgb/index.js';
+import './src/io/and/index.js'; // CONTINUE convert to module
 
 // operators --> modify existing Colors
-require('./src/ops/alpha');
-require('./src/ops/darken');
-require('./src/ops/get');
-require('./src/ops/mix');
-require('./src/ops/set');
+import './src/ops/alpha.js';
+import './src/ops/darken.js';
+import './src/ops/get.js';
+import './src/ops/mix.js';
+import './src/ops/set.js';
 
 // interpolators
-require('./src/interpolator/lrgb');
-require('./src/interpolator/oklab');
+import './src/interpolator/lrgb.js';
+import './src/interpolator/oklab.js';
+
+import mix from './src/generator/mix.js';
+import valid from './src/utils/valid.js';
 
 // generators -- > create new colors
-chroma.mix = chroma.interpolate = require('./src/generator/mix');
+chroma.mix = chroma.interpolate = mix;
 
 // other utility methods
-chroma.valid = require('./src/utils/valid');
+chroma.valid = valid;
 
-module.exports = chroma;
+export default chroma;

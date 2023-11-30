@@ -2,6 +2,13 @@
 
 ### unreleased
 * minor improvements to documentation
+* BREAKING: conversion of code base to ES Modules. All build outputs are now ES Modules. The global var script is no longer available, use `import` to import chroma.js. For example:
+  ```html
+  <script type="module">
+    import chroma from 'https://raw.githack.com/chroma-js/chroma.js/main/index.js'
+    // ... use chroma as before ...
+  </script>
+  ```
 
 ### 2.6.2
 * added Android colors support to 'light' build version, missing by error at [2.5.0](#250)

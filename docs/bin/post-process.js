@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var fs = require('fs');
+import fs from 'fs';
 
 var index = fs.readFileSync('index.html', 'utf-8'),
 	footer = fs.readFileSync('src/footer.inc.html', 'utf-8');

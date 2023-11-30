@@ -1,8 +1,8 @@
-const Color = require('../Color');
-const {clip_rgb} = require('../utils');
-const {pow, sqrt, PI, cos, sin, atan2} = Math;
+import { Color } from '../Color.js';
+import { clip_rgb } from '../utils/index.js';
+const { pow, sqrt, PI, cos, sin, atan2 } = Math;
 
-module.exports = (colors, mode='lrgb', weights=null) => {
+export default (colors, mode='lrgb', weights=null) => {
     const l = colors.length;
     if (!weights) weights = Array.from(new Array(l)).map(() => 1);
     // normalize weights
@@ -20,7 +20,7 @@ module.exports = (colors, mode='lrgb', weights=null) => {
     let dy = 0;
     // initial color
     for (let i=0; i<xyz.length; i++) {
-        xyz[i] = (xyz[i] || 0) * weights[0];
+        xyz[i] = (xyz[i] || 0) * (mode.charAt(i) === 'h' ? 1 : weights[0]);
         cnt.push(isNaN(xyz[i]) ? 0 : weights[0]);
         if (mode.charAt(i) === 'h' && !isNaN(xyz[i])) {
             const A = xyz[i] / 180 * PI;

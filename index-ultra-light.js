@@ -1,18 +1,20 @@
-const chroma = require('./src/chroma');
+import {chroma} from './src/chroma.js';
 
 // feel free to comment out anything to rollup
-// a smaller chroma.js built
+// a smaller chroma.js build
 
 // io --> convert colors
-require('./src/io/css');
-require('./src/io/hex');
-require('./src/io/rgb');
-require('./src/io/and');
+import './src/io/css/index.js';
+import './src/io/hex/index.js';
+import './src/io/rgb/index.js';
+import './src/io/and/index.js';
 
 // operators --> modify existing Colors
-require('./src/ops/get');
+import './src/ops/get.js';
 
 // other utility methods
-chroma.valid = require('./src/utils/valid');
 
-module.exports = chroma;
+import valid from './src/utils/valid.js';
+chroma.valid = valid;
+
+export default chroma;

@@ -1,7 +1,7 @@
-const Color = require('../Color');
-const {sqrt, pow, min, max, atan2, abs, cos, sin, exp, PI} = Math;
+import { Color } from '../Color.js';
+const { sqrt, pow, min, max, atan2, abs, cos, sin, exp, PI } = Math;
 
-module.exports = function(a, b, Kl=1, Kc=1, Kh=1) {
+export default function(a, b, Kl=1, Kc=1, Kh=1) {
     // Delta E (CIE 2000)
     // see http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE2000.html
     var rad2deg = function(rad) {
@@ -43,5 +43,5 @@ module.exports = function(a, b, Kl=1, Kc=1, Kh=1) {
     const Rt = -Rc*sin(2*deg2rad(deltaTheta));
     const result = sqrt(pow(deltaL/(Kl*sl), 2) + pow(deltaCp/(Kc*sc), 2) + pow(deltaHp/(Kh*sh), 2) + Rt*(deltaCp/(Kc*sc))*(deltaHp/(Kh*sh)));
     return max(0, min(100, result));
-};
+}
 

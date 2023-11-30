@@ -22,7 +22,6 @@ const w3cx11 = {
     chartreuse: '#7fff00',
     chocolate: '#d2691e',
     coral: '#ff7f50',
-    cornflower: '#6495ed',
     cornflowerblue: '#6495ed',
     cornsilk: '#fff8dc',
     crimson: '#dc143c',
@@ -162,4 +161,4 @@ const w3cx11 = {
     yellowgreen: '#9acd32'
 }
 
-module.exports = w3cx11;
+export default w3cx11;

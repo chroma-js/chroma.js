@@ -1,5 +1,5 @@
-const {unpack,TWOPI} = require('../../utils');
-const {min,sqrt,acos} = Math;
+import { unpack, TWOPI } from '../../utils/index.js';
+const { min, sqrt, acos } = Math;
 
 const rgb2hsi = (...args) => {
     /*
@@ -28,5 +28,4 @@ const rgb2hsi = (...args) => {
     return [h*360,s,i];
 }
 
-module.exports = rgb2hsi;
-
+export default rgb2hsi;

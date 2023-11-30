@@ -1,4 +1,4 @@
-const {type} = require('../../utils');
+import {type} from '../../utils/index.js';
 
 const and2rgb = (and) => {
     if (type(and) == "number") {
@@ -14,4 +14,4 @@ const and2rgb = (and) => {
     throw new Error("unknown android color: "+and);
 }
 
-module.exports = and2rgb;
+export default and2rgb;

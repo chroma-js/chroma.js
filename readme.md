@@ -1,12 +1,28 @@
 # Chroma.js
 
-[Chroma.js](https://regorxxx.github.io/chroma.js/) is a ~~tiny~~ [small-ish](https://bundlephobia.com/result?p=chroma-js) zero-dependency JavaScript library ([13.5kB](https://bundlephobia.com/result?p=chroma-js)) for all kinds of color conversions and color scales. **Revived with new features and maintained.**
+[Chroma.js](https://github.com/chroma-js/chroma.js) is a ~~tiny~~ [small-ish](https://bundlephobia.com/result?p=chroma-js) zero-dependency JavaScript library for all kinds of color conversions and color scales. **Forked with new features and maintained.**
 
 [![Build Status](https://api.travis-ci.com/gka/chroma.js.svg?branch=master)](https://travis-ci.com/gka/chroma.js)
 
+### Demo
+
+<!-- CONTINUE update urls -->
+
+- [luminance](https://code4fukui.github.io/chroma-es/test/html/luminance.html)
+- [blend](https://code4fukui.github.io/chroma-es/test/html/blend.html)
+- [bezier](https://code4fukui.github.io/chroma-es/test/html/bezier.html)
+- [colorscales](https://code4fukui.github.io/chroma-es/test/html/colorscales.html)
+- [cubehelix](https://code4fukui.github.io/chroma-es/test/html/cubehelix.html)
+
 ### Usage
 
-Install from npm
+In Deno:
+
+```javascript
+import chroma from "https://github.com/chroma-js/chroma.js/index.js"; // CONTINUE proper URL
+```
+
+In Node.js install from npm
 
 ```
 npm install chroma-js
@@ -27,7 +43,7 @@ chroma('#D4F880').darken().hex();  // #a1c550
 Working with color scales is easy, too:
 
 ```javascript
-scale = chroma.scale(['white', 'red']);
+const scale = chroma.scale(['white', 'red']);
 scale(0.5).hex(); // #FF7F7F
 ```
 
@@ -51,19 +67,33 @@ chroma.scale(['lightyellow', 'navy']).domain([1, 100000], 7, 'log');
 
 ### Like it?
 
+<!-- CONTINUE update URL -->
 Why not dive into the [interactive documentation](https://regorxxx.github.io/chroma.js/) (there's a [static version](https://github.com/regorxxx/chroma.js/blob/master/docs/src/index.md), too). You can download [chroma.min.js](https://raw.github.com/regorxxx/chroma.js/master/chroma.min.js).
 
 You can use it in node.js, too!
 
     npm install chroma-js
 
-Or you can use it in SASS using [chromatic-sass](https://github.com/bugsnag/chromatic-sass)!
+You can use it in SASS using [chromatic-sass](https://github.com/bugsnag/chromatic-sass)!
+
+You can use it in Deno, too!
+
+```javascript
+import chroma from "https://github.com/chroma-js/chroma.js/index.js"; // CONTINUE proper URL
+```
+
+## Minify
+
+```bash
+npm install terser -g
+sh make.sh
+```
 
 ### Build instructions
 
 First clone the repository and install the dev dependencies:
 
-    git clone git@github.com:regorxxx/chroma.js.git
+    git clone git@github.com:chroma-js/chroma.js.git
     cd chroma.js
     npm install
 
@@ -92,9 +122,9 @@ To preview the docs locally you can use
 * [d3.js](https://github.com/mbostock/d3)
 
 
-### Author
+### Authors
 
-Chroma.js is written by [Gregor Aisch](http://driven-by-data.net) and updated by [regoxxx](https://github.com/regorxxx).
+Chroma.js is written by [these awesome contributors](https://github.com/chroma-js/chroma.js/graphs/contributors).
 
 ### License
 

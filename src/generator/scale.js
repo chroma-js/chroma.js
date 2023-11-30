@@ -2,12 +2,12 @@
 
 // @requires utils color analyze
 
-const chroma = require('../chroma');
-const {type} = require('../utils');
+import { chroma } from '../chroma.js';
+import { type } from '../utils/index.js';
 
-const {pow} = Math;
+const { pow } = Math;
 
-module.exports = function(colors) {
+export default function(colors) {
 
     // constructor
     let _mode = 'rgb';
@@ -353,7 +353,7 @@ module.exports = function(colors) {
     };
 
     return f;
-};
+}
 
 function __range__(left, right, inclusive) {
   let range = [];

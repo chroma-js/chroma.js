@@ -1,7 +1,7 @@
-const Color = require('../Color');
+import { Color } from '../Color.js';
 
 // simple Euclidean distance
-module.exports = function(a, b, mode='lab') {
+export default function(a, b, mode='lab') {
     // Delta E (CIE 1976)
     // see http://www.brucelindbloom.com/index.html?Equations.html
     a = new Color(a);
@@ -14,4 +14,4 @@ module.exports = function(a, b, mode='lab') {
         sum_sq += d*d;
     }
     return Math.sqrt(sum_sq);
-};
+}

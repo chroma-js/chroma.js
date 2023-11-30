@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Chroma.js</title>
-    <script type="text/javascript" src="../../chroma.js"></script>
 </head>
 <style type="text/css">
     body { font-family: Helvetica; }
@@ -15,11 +14,12 @@
 <body>
 
 
-    <script type="text/javascript">
+    <script type="module">
+    import chroma from "../../index.js";
+        
+    const names = Object.keys(chroma.colors), l = names.length;
 
-    var names = Object.keys(chroma.colors), l = names.length;
-
-    var cssMap = {
+    const cssMap = {
         dodge: 'color-dodge',
         burn: 'color-burn'
     };
@@ -27,12 +27,12 @@
     Object.keys(chroma.blend).forEach(function(mode) {
 
         document.write('<h1>'+mode+'</h1>');
-        for (var i=0; i<10; i++) {
-            var row = el('div.row'),
+        for (let i = 0; i < 10; i++) {
+            const row = el('div.row'),
                 left = el('div.left'),
                 right = el('div.right');
 
-            var bottom = names[Math.floor(Math.random()*l)],
+            const bottom = names[Math.floor(Math.random()*l)],
                 top = names[Math.floor(Math.random()*l)];
 
             swatch(bottom, left);
@@ -41,7 +41,7 @@
 
             swatch(bottom, right);
             swatch(bottom, right);
-            var s = swatch(top, right);
+            const s = swatch(top, right);
             s.className = 'swatch overlay';
             s.style.mixBlendMode = cssMap[mode] || mode;
             swatch(top, right);
@@ -50,15 +50,15 @@
     });
 
     function swatch(color, parent) {
-        var s = el('div.swatch', parent);
+        const s = el('div.swatch', parent);
         s.setAttribute('title', color);
         s.style.background = color;
         return s;
     }
 
     function el(t, parent) {
-        var p = t.split('.');
-        var e = document.createElement(p[0]);
+        const p = t.split('.');
+        const e = document.createElement(p[0]);
         if (p[1]) e.className = p[1];
         (parent || document.body).appendChild(e);
         return e;

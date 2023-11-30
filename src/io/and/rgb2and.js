@@ -1,4 +1,4 @@
-const {unpack, last} = require('../../utils');
+import {unpack, last} from '../../utils/index.js';
 const {round} = Math;
 
 const rgb2and = (...args) => {
@@ -16,4 +16,4 @@ const rgb2and = (...args) => {
 		: (0xff000000 | (rgba[0] << 16) | (rgba[1] << 8) | (rgba[2]));
 }
 
-module.exports = rgb2and;
+export default rgb2and;

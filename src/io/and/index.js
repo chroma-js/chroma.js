@@ -1,10 +1,9 @@
-const chroma = require('../../chroma');
-const Color = require('../../Color');
-const input = require('../input');
-const {unpack, type} = require('../../utils');
-const {round} = Math;
+import {chroma} from '../../chroma.js';
+import {Color} from '../../Color.js';
+import input from '../input.js';
+import {type} from '../../utils/index.js';
 
-const rgb2and = require('./rgb2and');
+import rgb2and from './rgb2and.js';
 
 Color.prototype.android = function(mode) {
     return rgb2and(this._rgb, mode);
@@ -12,7 +11,8 @@ Color.prototype.android = function(mode) {
 
 chroma.android = (...args) => new Color(...args, 'android');
 
-input.format.android = require('./and2rgb');
+import and2rgb from './and2rgb.js'
+input.format.android = and2rgb;
 
 input.autodetect.push({
     p: 5,

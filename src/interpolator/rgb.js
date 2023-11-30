@@ -1,6 +1,7 @@
-const Color = require('../Color');
+import { Color } from '../Color.js';
+import rgb from './index.js';
 
-const rgb = (col1, col2, f) => {
+const _rgb = (col1, col2, f) => {
     const xyz0 = col1._rgb;
     const xyz1 = col2._rgb;
     return new Color(
@@ -12,6 +13,6 @@ const rgb = (col1, col2, f) => {
 }
 
 // register interpolator
-require('./index').rgb = rgb;
+rgb.rgb = _rgb;
 
-module.exports = rgb;
+export default rgb;

@@ -1,10 +1,11 @@
 import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import buble from "@rollup/plugin-buble";
+// import commonjs from "@rollup/plugin-commonjs";
+// import buble from "@rollup/plugin-buble";
 import license from "rollup-plugin-license";
 import replace from "@rollup/plugin-replace";
 import path from "path";
 import { terser } from "rollup-plugin-terser";
+import { version } from './package.json'
 
 const minify = !process.env.ROLLUP_WATCH && !process.env.DEV;
 /** globals process, __dirname **/
@@ -20,24 +21,24 @@ function bundle(input, target) {
     input,
     output: {
       file: `${target}${minify ? ".min" : ""}.js`,
-      format: "umd",
+      format: "esm",
       name: "chroma",
     },
     plugins: [
       resolve(),
-      commonjs(),
+    //   commonjs(),
 
       replace({
         delimiters: ["@@", ""],
         preventAssignment: true,
-        version: require("./package.json").version,
+        version,
       }),
 
       // If we're building for production (npm run build
       // instead of npm run dev), transpile and minify
-      buble({
-        transforms: { dangerousForOf: true },
-      }),
+    //   buble({
+    //     transforms: { dangerousForOf: true },
+    //   }),
       minify &&
         terser({
           mangle: true,

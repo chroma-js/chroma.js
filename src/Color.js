@@ -1,7 +1,7 @@
-const {last, clip_rgb, type} = require('./utils');
-const _input = require('./io/input');
+import { last, clip_rgb, type } from './utils/index.js';
+import _input from './io/input.js';
 
-class Color {
+export class Color {
 
     constructor(...args) {
         const me = this;
@@ -28,7 +28,6 @@ class Color {
                 if (mode) break;
             }
         }
-
         if (_input.format[mode]) {
             const rgb = _input.format[mode].apply(null, autodetect ? args : args.slice(0,-1));
             me._rgb = clip_rgb(rgb);
@@ -46,5 +45,3 @@ class Color {
     }
 
 }
-
-module.exports = Color;

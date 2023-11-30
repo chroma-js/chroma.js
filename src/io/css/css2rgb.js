@@ -1,5 +1,5 @@
-const hsl2rgb = require('../hsl/hsl2rgb');
-const input = require('../input');
+import hsl2rgb from '../hsl/hsl2rgb.js';
+import input from '../input.js';
 
 const RE_RGB = /^rgb\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*\)$/;
 const RE_RGBA = /^rgba\(\s*(-?\d+),\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*([01]|[01]?\.\d+)\)$/;
@@ -8,7 +8,7 @@ const RE_RGBA_PCT = /^rgba\(\s*(-?\d+(?:\.\d+)?)%,\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-
 const RE_HSL = /^hsl\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*\)$/;
 const RE_HSLA = /^hsla\(\s*(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)%\s*,\s*(-?\d+(?:\.\d+)?)%\s*,\s*([01]|[01]?\.\d+)\)$/;
 
-const {round} = Math;
+const { round } = Math;
 
 const css2rgb = (css) => {
     css = css.toLowerCase().trim();
@@ -91,4 +91,4 @@ css2rgb.test = (s) => {
         RE_HSLA.test(s);
 }
 
-module.exports = css2rgb;
+export default css2rgb;

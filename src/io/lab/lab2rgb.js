@@ -1,6 +1,6 @@
-const LAB_CONSTANTS = require('./lab-constants');
-const {unpack} = require('../../utils');
-const {pow} = Math;
+import LAB_CONSTANTS from './lab-constants.js';
+import { unpack } from '../../utils/index.js';
+const { pow } = Math;
 
 /*
  * L* [0..100]
@@ -35,4 +35,4 @@ const lab_xyz = (t) => {
     return t > LAB_CONSTANTS.t1 ? t * t * t : LAB_CONSTANTS.t2 * (t - LAB_CONSTANTS.t0)
 }
 
-module.exports = lab2rgb;
+export default lab2rgb;
